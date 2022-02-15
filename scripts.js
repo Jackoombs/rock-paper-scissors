@@ -1,63 +1,79 @@
 function round() {
-  let userWeapon = prompt("So... Rock, Paper or Scissors").toLowerCase();
-  
-  while (!((userWeapon == 'rock') || (userWeapon == 'scissors') || (userWeapon == 'paper'))) {
-    userWeapon = prompt('Not quite what I asked, try again').toLowerCase();
-  }
+  let userWeapon = this.id
+  console.log(userWeapon)
 
   const computerChoices = ['rock', 'paper', 'scissors'];
   computerWeapon = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-  console.log(`Rock...\nPaper...\nScissors!\n\nYou chose ${userWeapon} and the computer chose ${computerWeapon}`);
+  const weaponChoices = document.querySelector('h3')
 
+  if (userWeapon === computerWeapon) {
+    weaponChoices.innerHTML = `Rock... Paper... Scissors! <br> You chose ${userWeapon.toUpperCase()} and the computer also chose ${computerWeapon.toUpperCase()}!`;
+   } else weaponChoices.innerHTML = `Rock... Paper... Scissors! <br> You chose ${userWeapon.toUpperCase()} and the computer chose ${computerWeapon.toUpperCase()}!`;
+
+  let result = ''
   if ((userWeapon == 'rock' && computerWeapon == 'paper') || (userWeapon == 'paper' && computerWeapon == 'scissors') || (userWeapon == 'scissors' && computerWeapon == 'rock')) {
     console.log(`You Lose... ${computerWeapon} beats ${userWeapon}!`)
-    const result = "lose";
-    return result
+    result = "YOU LOSE!"
+    computerWins ++
   } else if (userWeapon == computerWeapon) {
-      console.log('Draw!')
-      const result = "draw";
-      return result
+    result = "IT'S A TIE!";
   } else {
-      console.log(`You Win... ${userWeapon} beats ${computerWeapon}!`)
-      const result = "win";
-      return result
+    result = "YOU WIN!";
+    userWins ++
+    }
+
+  const core = document.querySelector('h2')
+  core.innerHTML = `${result}<br>${userWins} - ${computerWins}` 
+  
+  if (computerWins == 5) {
+    alert('Comiserations you lost the game. Try Again?')
+    userWins = 0
+    computerWins = 0
   }
+  if (userWins == 5) {
+    alert('Congratualtions you won the game. Try again?')
+    userWins = 0 
+    computerWins = 0
+  }
+  
+
 }
 
-function game() {
-  const bestOf = prompt("Best of?...")
-  let roundNumber = 1;
-  let computerWins = 0;
-  let userWins = 0;
-  while (true) {
+let computerWins = 0;
+let userWins = 0;
 
-    console.log(`Round ${roundNumber}\nUser - ${userWins} : Computer - ${computerWins}`)
-
-    roundResult = round()
-    if (roundResult == 'win') {
-      userWins++
-    } else if (roundResult == 'lose') {
-      computerWins++
-    }
-    roundNumber++
-
-    if (userWins == bestOf) {
-      console.log(`User - ${userWins} : Computer - ${computerWins}\n\nUser is the Winner`)
-      return gameWinner = "user"
-
-    } else if (computerWins == bestOf) {
-        console.log(`User - ${userWins} : Computer - ${computerWins}\n\nComputer is the Winner`)
-        return gameWinner = "computer"
-    }
-  
-  }
-
-  
-}
-
-game()
+const buttons = document.querySelectorAll('button')
+buttons.forEach(button => button.addEventListener('click', round));
 
 
+
+// function game() {
+//   const bestOf = prompt("Best of?...")
+//   let roundNumber = 1;
+//   
+
+//   while (true) {
+
+//     console.log(`Round ${roundNumber}\nUser - ${userWins} : Computer - ${computerWins}`)
+
+//     roundResult = round()
+//     if (roundResult == 'win') {
+//       userWins++
+//     } else if (roundResult == 'lose') {
+//       computerWins++
+//     }
+//     roundNumber++
+
+//     if (userWins == bestOf) {
+//       console.log(`User - ${userWins} : Computer - ${computerWins}\n\nUser is The Winner`)
+//       gameWinner = "user"
+
+//     } else if (computerWins == bestOf) {
+//         console.log(`User - ${userWins} : Computer - ${computerWins}\n\nComputer is The Winner`)
+//         gameWinner = "computer"
+//     }
+//   } 
+// }
 
 
